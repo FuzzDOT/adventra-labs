@@ -17,7 +17,7 @@ function Hero() {
       <div className={`container ${styles.heroContent}`}>
         <div className={styles.heroEyebrow}>
           <span className={styles.eyebrowDot} />
-          <span className="t-label-accent">Adventura Labs · Pittsburgh, PA</span>
+          <span className="t-label-accent">Adventra Labs · Pittsburgh, PA</span>
         </div>
 
         <h1 className={styles.heroHeadline}>

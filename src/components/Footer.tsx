@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="container">
         <div className={styles.top}>
           <div className={styles.brand}>
-            <div className={styles.brandName}>Adventura Labs</div>
+            <div className={styles.brandName}>Adventra Labs</div>
             <div className={styles.brandSub}>Cutting Edge AI Products</div>
           </div>
 
@@ -53,7 +53,7 @@ export default function Footer() {
         <div className={styles.divider} />
 
         <div className={styles.bottom}>
-          <div className={styles.copy}>© {new Date().getFullYear()} Adventura Labs. All rights reserved.</div>
+          <div className={styles.copy}>© {new Date().getFullYear()} Adventra Labs. All rights reserved.</div>
           <div className={styles.bottomRight}>
             <span>Pittsburgh, PA</span>
             <span className={styles.dot}>·</span>

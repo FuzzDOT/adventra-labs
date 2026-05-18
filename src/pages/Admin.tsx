@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import styles from './Admin.module.css';
 const MOCK_INQUIRIES = [
-  { id: '1', name: 'Sarah Chen', email: 'sarah@sequoiacapital.com', company: 'Sequoia Capital', message: "We've been tracking Adventura Labs. We'd love to discuss Series A timing. VERITAS's determinism architecture is exactly what institutional clients need.", type: 'investor', date: 'May 17, 2026', read: false },
-  { id: '2', name: 'Marcus Webb', email: 'm.webb@techcrunch.com', company: 'TechCrunch', message: "Working on a feature on next-gen AI infrastructure. Adventura Labs' approach is the most technically credible I've seen. Brief interview?", type: 'press', date: 'May 17, 2026', read: false },
+  { id: '1', name: 'Sarah Chen', email: 'sarah@sequoiacapital.com', company: 'Sequoia Capital', message: "We've been tracking Adventra Labs. We'd love to discuss Series A timing. VERITAS's determinism architecture is exactly what institutional clients need.", type: 'investor', date: 'May 17, 2026', read: false },
+  { id: '2', name: 'Marcus Webb', email: 'm.webb@techcrunch.com', company: 'TechCrunch', message: "Working on a feature on next-gen AI infrastructure. Adventra Labs' approach is the most technically credible I've seen. Brief interview?", type: 'press', date: 'May 17, 2026', read: false },
   { id: '3', name: 'Dr. Anita Patel', email: 'apatel@upmc.edu', company: 'UPMC', message: 'Dr. Help looks exceptional. Our radiology team would love to explore a clinical validation collaboration for the multimodal pipeline. We have access to 12K+ annotated images.', type: 'partner', date: 'May 16, 2026', read: true },
   { id: '4', name: 'James Okafor', email: 'james@cortexai.io', company: 'Cortex AI', message: 'LUMEN interpretability toolkit is exactly what we have been looking for. We are evaluating mechanistic interpretability approaches for our production LLM pipeline.', type: 'partner', date: 'May 15, 2026', read: true },
 ];
@@ -41,7 +41,7 @@ export default function Admin() {
               <circle cx="12" cy="12" r="2.5" fill="var(--accent)"/>
             </svg>
             <div>
-              <div className={styles.sBrandName}>Adventura Labs</div>
+              <div className={styles.sBrandName}>Adventra Labs</div>
               <div className={styles.sBrandSub}>Admin</div>
             </div>
           </div>
@@ -120,7 +120,7 @@ export default function Admin() {
                   <a href={`mailto:${selected.email}`} className={styles.detailEmail}>{selected.email}</a>
                   <div className={styles.detailDate}>{selected.date}</div>
                   <div className={styles.detailMsg}>{selected.message}</div>
-                  <a href={`mailto:${selected.email}?subject=Re: Adventura Labs`} className="btn btn--accent" style={{ display: 'inline-flex', marginTop: 16, fontSize: 13 }}>Reply →</a>
+                  <a href={`mailto:${selected.email}?subject=Re: Adventra Labs`} className="btn btn--accent" style={{ display: 'inline-flex', marginTop: 16, fontSize: 13 }}>Reply →</a>
                 </div>
               )}
             </div>
@@ -168,7 +168,7 @@ function Login({ onAuth }: { onAuth: () => void }) {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!rateLimitOk()) { setLocked(true); setErr('Too many attempts. Wait 15 minutes.'); return; }
-    if (email.trim().toLowerCase() === 'admin@adventuralabs.ai' && pwd === 'AdvLabs2026!') {
+    if (email.trim().toLowerCase() === 'admin@adventralabs.ai' && pwd === 'AdvLabs2026!') {
       onAuth();
     } else {
       setErr('Invalid credentials.');
@@ -188,7 +188,7 @@ function Login({ onAuth }: { onAuth: () => void }) {
         <form className={styles.loginForm} onSubmit={submit}>
           <div className={styles.loginField}>
             <label className={styles.loginLabel}>Email</label>
-            <input className={styles.loginInput} type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="admin@adventuralabs.ai" disabled={locked} maxLength={254} required />
+            <input className={styles.loginInput} type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="admin@adventralabs.ai" disabled={locked} maxLength={254} required />
           </div>
           <div className={styles.loginField}>
             <label className={styles.loginLabel}>Password</label>

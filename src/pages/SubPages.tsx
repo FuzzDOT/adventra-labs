@@ -50,7 +50,7 @@ export function ResearchPage() {
             <div className="section-label rv"><span className="t-label-accent">Research</span></div>
             <h1 className="t-h1 rv">We publish when we have<br />something to prove.</h1>
             <p className="t-body-lg rv" style={{maxWidth:600}}>
-              Every paper at Adventura Labs is paired with a working system. We publish when the work is real and the results are verifiable.
+              Every paper at Adventra Labs is paired with a working system. We publish when the work is real and the results are verifiable.
             </p>
           </div>
         </div>
@@ -146,7 +146,7 @@ export function AboutPage() {
         <div className="container">
           <div className={styles.headerContent}>
             <div className="section-label rv"><span className="t-label-accent">About</span></div>
-            <h1 className="t-h1 rv">We are Adventura Labs.</h1>
+            <h1 className="t-h1 rv">We are Adventra Labs.</h1>
             <p className="t-body-lg rv" style={{maxWidth:580}}>
               Founded December 2025 in Pittsburgh, PA. Built from nothing — no co-founder, no template, no institutional backing. Just a conviction that AI that actually works is worth building.
             </p>
@@ -175,13 +175,13 @@ export function AboutPage() {
               <h2 className="t-h2 rv" style={{marginTop:16}}>Faaz Mohamed</h2>
               <div className={`${styles.founderRole} rv`}>CEO & Founder · Pittsburgh, PA</div>
               <p className="t-body-lg rv" style={{marginTop:20, maxWidth:520}}>
-                I founded Adventura Labs because I got tired of waiting for someone else to build the kind of AI company I wanted to exist.
+                I founded Adventra Labs because I got tired of waiting for someone else to build the kind of AI company I wanted to exist.
               </p>
               <p className="t-body rv" style={{maxWidth:520}}>
                 I operate across the full stack — from SIMD intrinsics in C++20 to multimodal deep learning in PyTorch, to production systems architecture in FastAPI and PostgreSQL. The best AI researchers are also strong engineers. I don't draw a line between the two.
               </p>
               <p className="t-body rv" style={{maxWidth:520}}>
-                I'm a sophomore at the University of Pittsburgh. NSF ExLAIM research fellow (2026). CTF competitor. Adventura Labs is not a side project. It is the main event.
+                I'm a sophomore at the University of Pittsburgh. NSF ExLAIM research fellow (2026). CTF competitor. Adventra Labs is not a side project. It is the main event.
               </p>
               <div className={`${styles.founderStats} rv`}>
                 {[{v:'5',l:'Products built'},{v:'NSF',l:'Research Fellow'},{v:'3.14',l:'GPA at Pitt'},{v:'Dec 2025',l:'Founded'}].map(s => (
@@ -201,7 +201,7 @@ export function AboutPage() {
               <div className={styles.founderAvatar}>FM</div>
               <div className={styles.founderCardName}>Faaz Mohamed</div>
               <div className={styles.founderCardTitle}>CEO & Founder</div>
-              <div className={styles.founderCardOrg}>Adventura Labs · Pittsburgh, PA</div>
+              <div className={styles.founderCardOrg}>Adventra Labs · Pittsburgh, PA</div>
               <div className={styles.founderDivider} />
               <div className={styles.founderCardSection}>Currently building</div>
               {['Project Coffeemaker','VERITAS v2','LUMEN v1.1'].map(s => (
@@ -253,7 +253,7 @@ export function AboutPage() {
             </div>
             <div className={styles.timeline}>
               {[
-                {y:'Dec 2025',e:'Adventura Labs founded',d:'No co-founder. No template. No institutional backing.'},
+                {y:'Dec 2025',e:'Adventra Labs founded',d:'No co-founder. No template. No institutional backing.'},
                 {y:'Dec 2025',e:'VERITAS v1 shipped',d:'9 microservices, SHA-256 audit chains, 400+ automated tests.'},
                 {y:'Dec 2025',e:'Dr. Help (stealth)',d:'Multimodal clinical AI. 3 input modalities, unified preprocessing.'},
                 {y:'May 2026',e:'LUMEN complete',d:'10M+ parameter transformer from scratch. 30% validation loss reduction via ablation. Full interpretability toolkit.'},
@@ -397,7 +397,7 @@ export function BlogPostPage() {
             <span className="t-label">{post.date}</span>
           </div>
           <h1 className="t-h1 rv" style={{marginTop:20, maxWidth:760}}>{post.title}</h1>
-          <div className={`${styles.postAuthor} rv`}>Faaz Mohamed · Adventura Labs</div>
+          <div className={`${styles.postAuthor} rv`}>Faaz Mohamed · Adventra Labs</div>
         </div>
       </div>
       <div className={styles.bodySection}>
@@ -408,7 +408,7 @@ export function BlogPostPage() {
           <div className={`${styles.postFooter} rv`} style={{transitionDelay:`${paragraphs.length*60}ms`}}>
             <div>
               <div className={styles.postFooterName}>Faaz Mohamed</div>
-              <div className={styles.postFooterTitle}>CEO & Founder, Adventura Labs</div>
+              <div className={styles.postFooterTitle}>CEO & Founder, Adventra Labs</div>
             </div>
             <button className="btn btn--ghost" onClick={() => navigate('/blog')}>← Back to Blog</button>
           </div>
@@ -440,12 +440,12 @@ export function CareersPage() {
 
       <div className={styles.bodySection}>
         <div className="container">
-          <div className="section-label rv"><span className="t-label-accent">Why Adventura Labs</span></div>
+          <div className="section-label rv"><span className="t-label-accent">Why Adventra Labs</span></div>
           <div className={styles.whyGrid}>
             {[
               {t:'The work is real', b:'Every product we ship is benchmarked, tested, and deployed. You will see your work in production — not a demo environment.'},
               {t:'The problems are hard', b:'Deterministic AI evaluation, systems-level ML infrastructure, and frontier AI research. If you want easy, this isn\'t the place.'},
-              {t:'Small team, full ownership', b:'You will own large parts of the system, make real architectural decisions, and directly shape what Adventura Labs becomes.'},
+              {t:'Small team, full ownership', b:'You will own large parts of the system, make real architectural decisions, and directly shape what Adventra Labs becomes.'},
               {t:'Fast and correct', b:'We believe rigorous engineering and commercial velocity are not a tradeoff. Sloppy engineering is what\'s slow. We prove it every sprint.'},
             ].map((w, i) => (
               <div key={w.t} className={`${styles.whyCard} rv`} style={{transitionDelay:`${i*60}ms`}}>
@@ -542,10 +542,10 @@ export function ContactPage() {
               <div className="section-label rv"><span className="t-label-accent">Reach us</span></div>
               <div className={`${styles.contactChannels} rv`}>
                 {[
-                  {l:'Email',v:'contact@adventuralabs.ai',href:'mailto:contact@adventuralabs.ai'},
+                  {l:'Email',v:'contact@adventralabs.ai',href:'mailto:contact@adventralabs.ai'},
                   {l:'LinkedIn',v:'/in/faazmohamed',href:'https://linkedin.com/in/faazmohamed'},
                   {l:'GitHub',v:'github.com/FuzzDOT',href:'https://github.com/FuzzDOT'},
-                  {l:'Location',v:'Pittsburgh, PA',href:null},
+                    {l:'Email',v:'contact@adventralabs.ai',href:'mailto:contact@adventralabs.ai'},
                 ].map(c => (
                   <div key={c.l} className={styles.channelRow}>
                     <span className={styles.channelLabel}>{c.l}</span>

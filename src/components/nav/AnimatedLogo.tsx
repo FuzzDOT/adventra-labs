@@ -13,11 +13,11 @@ export default function AnimatedLogo({ scrolled, darkMode = false }: Props) {
     <button
       className={`${styles.logo} ${scrolled ? styles.collapsed : ''} ${darkMode ? styles.dark : ''}`}
       onClick={() => navigate('/')}
-      aria-label="Adventura Labs — home"
+      aria-label="Adventra Labs — home"
     >
-      {/* Full wordmark: "Adventura Labs" */}
+      {/* Full wordmark: "Adventra Labs" */}
       <span className={styles.full}>
-        <span className={styles.wordA}>Adventura</span>
+        <span className={styles.wordA}>Adventra</span>
         <span className={styles.wordL}>Labs</span>
       </span>
 
