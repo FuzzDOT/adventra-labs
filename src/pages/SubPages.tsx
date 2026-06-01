@@ -523,6 +523,10 @@ export function ContactPage() {
         headers: { 'Accept': 'application/json' },
         body: new FormData(e.target as HTMLFormElement)
       });
+      // Log full response for debugging
+      const respText = await response.text();
+      try { console.log('Formspree response (parsed):', JSON.parse(respText)); } catch { console.log('Formspree response (text):', respText); }
+      console.log('Formspree status:', response.status, response.statusText);
       if (response.ok) {
         setStatus('done');
         setForm({name:'',email:'',company:'',message:'',type:'general'});
@@ -530,6 +534,7 @@ export function ContactPage() {
         setStatus('error');
       }
     } catch {
+      console.error('Form submission exception', arguments);
       setStatus('error');
     }
   };
@@ -558,9 +563,8 @@ export function ContactPage() {
                   {l:'Email',v:'contact@adventralabs.ai',href:'mailto:contact@adventralabs.ai'},
                   {l:'LinkedIn',v:'/in/faazmohamed',href:'https://linkedin.com/in/faazmohamed'},
                   {l:'GitHub',v:'github.com/FuzzDOT',href:'https://github.com/FuzzDOT'},
-                    {l:'Email',v:'contact@adventralabs.ai',href:'mailto:contact@adventralabs.ai'},
                 ].map(c => (
-                  <div key={c.l} className={styles.channelRow}>
+                  <div key={`${c.l}-${c.v}`} className={styles.channelRow}>
                     <span className={styles.channelLabel}>{c.l}</span>
                     {c.href
                       ? <a href={c.href} target={c.href.startsWith('http')?'_blank':undefined} rel="noreferrer" className={styles.channelVal}>{c.v}</a>
