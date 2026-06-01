@@ -497,7 +497,7 @@ export function CareersPage() {
 export function ContactPage() {
   const [form, setForm] = useState({name:'',email:'',company:'',message:'',type:'general'});
   const [errors, setErrors] = useState<Record<string,string>>({});
-  const [status, setStatus] = useState<'idle'|'loading'|'done'>('idle');
+  const [status, setStatus] = useState<'idle'|'loading'|'done'|'error'>('idle');
   const [honeypot, setHoneypot] = useState('');
 
   const set = (k: string, v: string) => {
@@ -511,14 +511,27 @@ export function ContactPage() {
     if (!form.message.trim() || form.message.length < 20) e.message = 'At least 20 characters';
     setErrors(e); return Object.keys(e).length === 0;
   };
+  // Replace with Formspree submission
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (honeypot) { setStatus('done'); return; }
     if (!validate()) return;
     setStatus('loading');
-    console.log('Submission:', {name:sanitize(form.name),email:sanitize(form.email),company:sanitize(form.company),message:sanitize(form.message),type:form.type});
-    await new Promise(r => setTimeout(r, 900));
-    setStatus('done');
+    try {
+      const response = await fetch('https://formspree.io/f/mlgvygbg', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(e.target as HTMLFormElement)
+      });
+      if (response.ok) {
+        setStatus('done');
+        setForm({name:'',email:'',company:'',message:'',type:'general'});
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -573,11 +586,18 @@ export function ContactPage() {
                   <div className={styles.successTitle}>Message received.</div>
                   <div className={styles.successSub}>We'll be in touch within 48 hours.</div>
                 </div>
+              ) : status === 'error' ? (
+                <div className={styles.formSuccess}>
+                  <div className={styles.successIcon} style={{color:'red'}}>✗</div>
+                  <div className={styles.successTitle}>Something went wrong.</div>
+                  <div className={styles.successSub}>Please try again later or email us directly.</div>
+                </div>
               ) : (
                 <form className={styles.form} onSubmit={submit} noValidate>
                   <div style={{position:'absolute',left:'-9999px'}} aria-hidden="true">
                     <input tabIndex={-1} name="website" value={honeypot} onChange={e => setHoneypot(e.target.value)} autoComplete="off" />
                   </div>
+                  <input type="hidden" name="type" value={form.type} />
                   <div className={styles.typeRow}>
                     {[{v:'investor',l:'Investor'},{v:'partner',l:'Partnership'},{v:'press',l:'Press'},{v:'careers',l:'Careers'},{v:'general',l:'General'}].map(t => (
                       <button key={t.v} type="button" className={`${styles.typeBtn} ${form.type===t.v?styles.typeBtnOn:''}`} onClick={() => set('type',t.v)}>{t.l}</button>
@@ -586,22 +606,22 @@ export function ContactPage() {
                   <div className={styles.fieldRow}>
                     <div className={styles.field}>
                       <label className={styles.fieldLabel} htmlFor="c-name">Name *</label>
-                      <input id="c-name" className={`${styles.input} ${errors.name?styles.inputErr:''}`} type="text" value={form.name} onChange={e => set('name',e.target.value)} placeholder="Your name" maxLength={100} autoComplete="name" />
+                      <input id="c-name" name="name" className={`${styles.input} ${errors.name?styles.inputErr:''}`} type="text" value={form.name} onChange={e => set('name',e.target.value)} placeholder="Your name" maxLength={100} autoComplete="name" />
                       {errors.name && <span className={styles.fieldErr}>{errors.name}</span>}
                     </div>
                     <div className={styles.field}>
                       <label className={styles.fieldLabel} htmlFor="c-email">Email *</label>
-                      <input id="c-email" className={`${styles.input} ${errors.email?styles.inputErr:''}`} type="email" value={form.email} onChange={e => set('email',e.target.value)} placeholder="you@company.com" maxLength={254} autoComplete="email" />
+                      <input id="c-email" name="email" className={`${styles.input} ${errors.email?styles.inputErr:''}`} type="email" value={form.email} onChange={e => set('email',e.target.value)} placeholder="you@company.com" maxLength={254} autoComplete="email" />
                       {errors.email && <span className={styles.fieldErr}>{errors.email}</span>}
                     </div>
                   </div>
                   <div className={styles.field}>
                     <label className={styles.fieldLabel} htmlFor="c-co">Company / Organization</label>
-                    <input id="c-co" className={styles.input} type="text" value={form.company} onChange={e => set('company',e.target.value)} placeholder="Your organization" maxLength={200} autoComplete="organization" />
+                    <input id="c-co" name="company" className={styles.input} type="text" value={form.company} onChange={e => set('company',e.target.value)} placeholder="Your organization" maxLength={200} autoComplete="organization" />
                   </div>
                   <div className={styles.field}>
                     <label className={styles.fieldLabel} htmlFor="c-msg">Message *</label>
-                    <textarea id="c-msg" className={`${styles.textarea} ${errors.message?styles.inputErr:''}`} value={form.message} onChange={e => set('message',e.target.value)} placeholder="Tell us what you're thinking about, what you're building, or what you want to discuss..." maxLength={2000} rows={6} />
+                    <textarea id="c-msg" name="message" className={`${styles.textarea} ${errors.message?styles.inputErr:''}`} value={form.message} onChange={e => set('message',e.target.value)} placeholder="Tell us what you're thinking about, what you're building, or what you want to discuss..." maxLength={2000} rows={6} />
                     <div className={styles.charCount}>{form.message.length}/2000</div>
                     {errors.message && <span className={styles.fieldErr}>{errors.message}</span>}
                   </div>
