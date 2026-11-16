@@ -568,7 +568,7 @@ export function ContactPage() {
               <div className="section-label rv"><span className="t-label-accent">Reach us</span></div>
               <div className={`${styles.contactChannels} rv`}>
                 {[
-                  {l:'Email',v:'contact@adventralabs.ai',href:'mailto:contact@adventralabs.ai'},
+                  {l:'Email',v:'contact@faazmohamed.com',href:'mailto:contact@faazmohamed.com'},
                   {l:'LinkedIn',v:'/in/faazmohamed',href:'https://linkedin.com/in/faazmohamed'},
                   {l:'GitHub',v:'github.com/FuzzDOT',href:'https://github.com/FuzzDOT'},
                 ].map(c => (
