@@ -491,6 +491,10 @@ export function CareersPage() {
   );
 }
 
+// Public by design: Web3Forms access keys are meant to live in client code.
+// Get yours at https://web3forms.com (enter your email, key is emailed to you).
+const WEB3FORMS_ACCESS_KEY = 'a4dbb9dd-f93f-4df8-9735-8bc2628483f7';
+
 /* ════════════════════════════
    CONTACT
 ════════════════════════════ */
@@ -511,30 +515,34 @@ export function ContactPage() {
     if (!form.message.trim() || form.message.length < 20) e.message = 'At least 20 characters';
     setErrors(e); return Object.keys(e).length === 0;
   };
-  // Replace with Formspree submission
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (honeypot) { setStatus('done'); return; }
     if (!validate()) return;
     setStatus('loading');
     try {
-      const response = await fetch('https://formspree.io/f/mlgvygbg', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(e.target as HTMLFormElement)
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Adventra Labs inquiry (${form.type}) from ${form.name.trim()}`,
+          from_name: 'Adventra Labs Website',
+          name: form.name.trim(),
+          email: form.email.trim(),
+          company: form.company.trim(),
+          type: form.type,
+          message: form.message.trim(),
+        }),
       });
-      // Log full response for debugging
-      const respText = await response.text();
-      try { console.log('Formspree response (parsed):', JSON.parse(respText)); } catch { console.log('Formspree response (text):', respText); }
-      console.log('Formspree status:', response.status, response.statusText);
-      if (response.ok) {
+      const data = await response.json().catch(() => null);
+      if (response.ok && data?.success) {
         setStatus('done');
         setForm({name:'',email:'',company:'',message:'',type:'general'});
       } else {
         setStatus('error');
       }
     } catch {
-      console.error('Form submission exception', arguments);
       setStatus('error');
     }
   };
